@@ -2,15 +2,13 @@ export const loadMyMovieList = () => dispatch => {
   dispatch({
     type: "LOAD_MY_MOVIE_LIST"
   });
-  fetch(
-    "/movies"
-      .then(response => {
-        return response.json();
-      })
-      .then(movies => {
-        dispatch(myMovieListLoaded(movies));
-      })
-  );
+  fetch("/movies")
+    .then(response => {
+      return response.json();
+    })
+    .then(movies => {
+      dispatch(myMovieListLoaded(movies));
+    });
 };
 
 export const myMovieListLoaded = movies => {
@@ -20,16 +18,14 @@ export const myMovieListLoaded = movies => {
   };
 };
 
-export const loadSearch = () => dispatch => {
+export const loadSearch = searchTerm => dispatch => {
   dispatch({
     type: "LOAD_SEARCH"
   });
   fetch(
     `https://api.themoviedb.org/3/search/multi?query=${searchTerm}&api_key=b627c3bab35d14cf33ffdeca5e332c80`
   )
-    .then(response => {
-      return response.json();
-    })
+    .then(res => res.json())
     .then(movies => {
       dispatch(searchLoaded(movies));
     });
@@ -42,25 +38,25 @@ export const searchLoaded = movies => {
   };
 };
 
-export const saveMyMovie = () => dispatch => {
-  dispatch({
-    type: "POST"
-  });
-  fetch(
-    "/movies"
-      .then(response => {
-        return response.json();
-      })
-      .then(movies => {
-        dispatch(loadMyMovieList(movies));
-      })
-  );
+export const saveMyMovie = movie => dispatch => {
+  fetch("/movies", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(movie)
+  })
+    .then(res => res.json())
+    .then(movies => dispatch(loadMyMovieList(movies)));
 };
 
-export const removeMyMovie = id => {
-  return fetch(/movies/ + "/" + id, {
-    method: "DELETE"
-  }).then(() => {
-    dispatch(loadMyMovieList());
-  });
+export const removeMyMovie = id => dispatch => {
+  fetch(`/movies/${id}`, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(movies => {
+      dispatch(loadMyMovieList(movies));
+    });
 };

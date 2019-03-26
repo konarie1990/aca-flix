@@ -4,11 +4,16 @@ import "./App.css";
 import Logo from "./Logo.js";
 import TitleList from "./components/TitleList";
 import Hero from "./components/Hero";
-import SearchBox from "./components/SearchBox";
+import SearchBox from "./containers/SearchBoxContainer";
 import Navigation from "../src/components/Navigation";
 import UserProfile from "../src/components/UserProfile";
+import { loadMyMovieList } from "./actions";
 
 class App extends Component {
+  componentDidMount = () => {
+    loadMyMovieList();
+  };
+
   render() {
     return (
       <div>
@@ -48,4 +53,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  searchResults: PropTypes.array,
+  myMovieList: PropTypes.array
+};
+
 export default App;
