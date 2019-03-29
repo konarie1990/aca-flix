@@ -1,7 +1,7 @@
 import React from "react";
 import ListToggleContainer from "../containers/ListToggleContainer";
 
-function Item(props) {
+const Item = props => {
   let name = "";
   let backDrop =
     "http://image.tmdb.org/t/p/original" + props.movie.backdrop_path;
@@ -21,5 +21,5 @@ function Item(props) {
       </div>
     </div>
   );
-}
+};
 export default Item;

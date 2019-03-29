@@ -1,30 +1,56 @@
-import React, { Component } from "react";
+// import React from "react";
+// import Item from "./Item";
+
+// const TitleList = props => {
+//   let titles = "";
+//   if (props.movies) {
+//     titles = props.movies.map(function(title, i) {
+//       if (i < 5) {
+//         return <Item key={title.id} movie={title} />;
+//       }
+//       return <div key={title.id + title.description} />;
+//     });
+//   }
+
+//   return (
+//     <div
+//       className="TitleList"
+//       data-loaded={props.movies && props.movies.length > 0}
+//     >
+//       <div className="Title">
+//         <h1>{props.title}</h1>
+//         <div className="titles-wrapper">{titles}</div>
+//       </div>
+//     </div>
+//   );
+// };
+// export default TitleList;
+
+import React from "react";
 import Item from "./Item";
 
-function TitleList(props) {
+const TitleList = props => {
   let titles = "";
   if (props.movies) {
-    titles = props.movies.map(function (title, i) {
+    titles = props.movies.map(function(title, i) {
       if (i < 5) {
-        return (
-          <Item key={title.id} movie={title} />
-        );  
-      } 
-      return (<div key={title.id} />);
-    }); 
-  } 
-  
+        return <Item key={title.id} movie={title} />;
+      }
+      return <div key={title.id} />;
+    });
+  }
+
   return (
-    <div 
-      className="TitleList" 
-      data-loaded={props.movies && props.movies.length > 0}>
+    <div
+      className="TitleList"
+      data-loaded={props.movies && props.movies.length > 0}
+    >
       <div className="Title">
         <h1>{props.title}</h1>
-        <div className="titles-wrapper">
-          {titles}
-        </div>
+        <div className="titles-wrapper">{titles}</div>
       </div>
     </div>
   );
-}
+};
+
 export default TitleList;
