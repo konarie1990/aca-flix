@@ -4,12 +4,8 @@ import { connect } from "react-redux";
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveMyMovie(movie) {
-      dispatch(saveMyMovie(movie));
-    },
-    removeMyMovie() {
-      dispatch(removeMyMovie);
-    }
+    saveMyMovie: movie => dispatch(saveMyMovie(movie)),
+    removeMyMovie: id => dispatch(removeMyMovie(id))
   };
 };
 

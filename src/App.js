@@ -4,7 +4,7 @@ import "./App.css";
 import Logo from "./Logo.js";
 import TitleList from "./components/TitleList";
 import Hero from "./components/Hero";
-import SearchBox from "./containers/SearchBoxContainer";
+import SearchBoxContainer from "./containers/SearchBoxContainer";
 import Navigation from "../src/components/Navigation";
 import UserProfile from "../src/components/UserProfile";
 import { loadMyMovieList } from "./actions";
@@ -31,7 +31,7 @@ class App extends Component {
               </nav>
             </div>
           </Navigation>
-          <SearchBox />
+          <SearchBoxContainer />
           <UserProfile>
             <div className="UserProfile">
               <div className="User">

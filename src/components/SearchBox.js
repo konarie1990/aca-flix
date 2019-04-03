@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { loadSearch } from "../actions";
 
 class SearchBox extends Component {
   constructor() {
@@ -32,4 +34,14 @@ class SearchBox extends Component {
     );
   }
 }
-export default SearchBox;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadSearch: searchTerm => dispatch(loadSearch(searchTerm))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchBox);
