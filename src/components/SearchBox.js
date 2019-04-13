@@ -1,23 +1,21 @@
+// SearchBox was one of the culprits as to why I was stuck - I created containers and calling mapStateToProps in both files *CORRECTED
+
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { loadSearch } from "../actions";
 
 class SearchBox extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchTerm: ""
-    };
-  }
+  state = {
+    searchTerm: ""
+  };
+
   onChange = e => {
-    this.setState({ searchTerm: e.target.value });
+    this.setState({ value: e.target.value });
   };
 
   render() {
     return (
       <div id="search" className="Search">
         <input
-          onChange={this.onChange}
+          onChange={e => this.setState({ searchTerm: e.target.value })}
           onKeyUp={e => {
             if (
               this.props.loadSearch &&
@@ -35,13 +33,4 @@ class SearchBox extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadSearch: searchTerm => dispatch(loadSearch(searchTerm))
-  };
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(SearchBox);
+export default SearchBox;

@@ -1,3 +1,5 @@
+// handleing mapStateToProps and mapDispatchToProps
+
 import App from "../App";
 import { loadMyMovieList } from "../actions";
 import { connect } from "react-redux";
@@ -11,9 +13,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadMyMovieList() {
-      dispatch(loadMyMovieList());
-    }
+    loadMyMovieList: () => dispatch(loadMyMovieList())
   };
 };
 

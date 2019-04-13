@@ -14,12 +14,13 @@ const searchResults = (state = [], action) => {
   return state;
 };
 
-const rootReducer = combineReducers({
+export default combineReducers({
   myMovieList,
   searchResults
 });
 
-export default rootReducer;
+// Trouble shooting commented out export default rootReducer
+// export default rootReducer;
 
 // * In reducers/index.js
 // * Create reducers functions for all state

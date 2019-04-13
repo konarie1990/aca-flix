@@ -1,3 +1,5 @@
+// ListToggleContainer handles ListToggle.js redux dispatch
+
 import ListToggle from "../components/ListToggle";
 import { saveMyMovie, removeMyMovie } from "../actions";
 import { connect } from "react-redux";

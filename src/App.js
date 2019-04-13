@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
+// import PropTypes from "prop-types";
 import "./App.css";
 import Logo from "./Logo.js";
 import TitleList from "./components/TitleList";
@@ -19,32 +20,9 @@ class App extends Component {
       <div>
         <header className="Header">
           <Logo />
-          <Navigation>
-            <div id="navigation" className="Navigation">
-              <nav>
-                <ul>
-                  <li>Browse</li>
-                  <li>My list</li>
-                  <li>Top picks</li>
-                  <li>Recent</li>
-                </ul>
-              </nav>
-            </div>
-          </Navigation>
+          <Navigation />
           <SearchBoxContainer />
-          <UserProfile>
-            <div className="UserProfile">
-              <div className="User">
-                <div className="name">Jack Oliver</div>
-                <div className="image">
-                  <img
-                    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/profile/profile-512_1.jpg"
-                    alt="profile"
-                  />
-                </div>
-              </div>
-            </div>
-          </UserProfile>
+          <UserProfile />
         </header>
         <Hero />
         <TitleList title="Search Results" movies={this.props.searchResults} />
@@ -54,9 +32,14 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  searchResults: PropTypes.array,
-  myMovieList: PropTypes.array
+const mapStateToProps = state => {
+  return {
+    searchResults: state.searchResults,
+    myMoveiList: state.myMoveiList
+  };
 };
 
-export default App;
+export default connect(
+  mapStateToProps,
+  { loadMyMovieList }
+)(App);
